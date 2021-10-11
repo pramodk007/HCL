@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="grey_divider">#d9d9d9</color>
+    <color name="divider">#d9d9d9</color>
+    <color name="bmi_grey">#ff9e9e9e</color>
+    <color name="bmi_red">#ffdb4437</color>
+    <color name="bmi_yellow">#ffffff00</color>
+    <color name="bmi_green">#ff0f9d58</color>
+    <color name="err_red">#f44336</color>
+    <color name="postive_button">#068bcc</color>
+    <color name="sky_blue">#068bcc</color>
+    <color name="negative_button">#d86422</color>
+    <color name="orange">#d86422</color>
+</resources>

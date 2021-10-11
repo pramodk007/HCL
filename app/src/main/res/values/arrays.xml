@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="country">
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Andorra</item>
+        <item>Angola</item>
+        <item>Antigua and Barbuda</item>
+        <item>Argentina</item>
+        <item>Armenia</item>
+        <item>Australia</item>
+        <item>Austria</item>
+        <item>Austrian Empire*</item>
+        <item>Azerbaijan</item>
+    </string-array>
+
+    <string-array name="height">
+        <item>"ft/in"</item>
+        <item>"cm"</item>
+    </string-array>
+
+    <string-array name="weight">
+        <item>"kg"</item>
+    </string-array>
+
+    <string-array name="cholesterol">
+        <item>"mg/dL"</item>
+    </string-array>
+
+</resources>

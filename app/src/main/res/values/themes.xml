@@ -1,0 +1,109 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.HeartCareLite" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/sky_blue</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="HeartCareLite.DropDown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/zero_dp</item>
+        <item name="android:layout_marginStart">@dimen/margin_big</item>
+        <item name="android:layout_marginTop">@dimen/margin_normal</item>
+        <item name="android:layout_marginEnd">@dimen/margin_big</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.Chip.Choice" parent="Base.Widget.MaterialComponents.Chip">
+        <item name="android:checkable">true</item>
+        <item name="chipIconVisible">false</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="closeIconVisible">false</item>
+        <item name="checkedIcon">@drawable/ic_mtrl_chip_checked_black</item>
+        <item name="android:textColor">@color/mtrl_choice_chip_text_color</item>
+        <item name="chipBackgroundColor">@color/mtrl_choice_chip_background_color</item>
+        <item name="rippleColor">@color/mtrl_choice_chip_ripple_color</item>
+    </style>
+
+    <style name="AppTheme.DropDownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_normal</item>
+        <item name="android:layout_marginBottom">@dimen/margin_normal</item>
+        <item name="android:layout_marginStart">@dimen/margin_big</item>
+        <item name="android:layout_marginEnd">@dimen/margin_big</item>
+        <item name="hintTextColor">@color/teal_200</item>
+        <item name="boxStrokeColor">@color/black</item>
+    </style>
+
+    <style name="Registration.DropDown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/margin_normal</item>
+        <item name="android:layout_marginEnd">@dimen/margin_big</item>
+    </style>
+
+    <style name="Theme.Roshnee.EditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+    </style>
+
+    <style name="Theme.Roshnee.EditText.Registration" parent="Theme.Roshnee.EditText">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">@dimen/zero_dp</item>
+    <item name="android:layout_marginStart">@dimen/margin_big</item>
+    <item name="android:layout_marginEnd">@dimen/margin_big</item>
+    <item name="android:layout_marginTop">@dimen/margin_normal</item>
+    <item name="layout_constraintEnd_toEndOf">parent</item>
+    <item name="layout_constraintStart_toStartOf">parent</item>
+    <item name="counterEnabled">true</item>
+    </style>
+
+    <style name="Registration.TextInputLayout" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:longClickable">false</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="AlertDialogTheme">
+        <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Alert.Button.Neutral</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Alert.Button.Negative</item>
+    </style>
+
+    <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/postive_button</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Alert.Button.Negative" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/negative_button</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Alert.Button.Neutral" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- ToolBar -->
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">@color/sky_blue</item>
+        <item name="android:textColorSecondary">@color/sky_blue</item>
+        <item name="actionMenuTextColor">@color/sky_blue</item>
+
+    </style>
+
+</resources>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">HeartCareLite</string>
+    <string name="text_screening_date">Screening Date</string>
+    <string name="text_date_of_birth">date of birth</string>
+    <string name="text_age">age</string>
+    <string name="years">years</string>
+    <string name="text_male">male</string>
+    <string name="text_female">female</string>
+    <string name="text_sex">Sex*</string>
+    <string name="text_diabetes">Diabetes*</string>
+    <string name="text_yes">yes</string>
+    <string name="text_no">no</string>
+    <string name="text_cardiovascular_event">Cardiovascular Event*</string>
+    <string name="text_blood_pressure">Blood Pressure</string>
+    <string name="text_sys_not_greater">Systolic should be greater than diastolic</string>
+    <string name="text_previous_major_cardiovascular_event">Previous major cardiovascular event*</string>
+</resources>

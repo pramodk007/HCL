@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="myViewModel"
+            type="com.example.heartcarelite.ui.cvdRisk.CvdRiskViewModel"/>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.cvdRisk.CvdRiskActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            app:buttonGravity="center_vertical"
+            android:layout_height="wrap_content"
+            app:theme="@style/ToolBarStyle"
+            android:background="@android:color/white"
+            android:elevation="@dimen/elevation_toolbar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero_dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@+id/button_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintVertical_bias="0.0"
+            tools:context=".ui.cvdRisk.CvdRiskActivity">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/screening_date_container"
+                    style="@style/Theme.Roshnee.EditText.Registration"
+                    android:hint="@string/text_screening_date"
+                    app:counterEnabled="false"
+                    app:endIconDrawable="@drawable/ic_calendar"
+                    app:endIconMode="custom"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/screening_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:longClickable="false"
+                        app:datePick="@{myViewModel.inputScreeningDate}"
+                        app:maxDate="@{myViewModel.maximumScreeningDate}"
+                        app:textDate="@{myViewModel.inputScreeningDate}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_dob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:onCheckedChanged="@{(group, checkedId)->myViewModel.setDOBType(checkedId)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/screening_date_container"
+                    app:selectionRequired="true"
+                    app:singleSelection="true"
+                    app:useMaterialThemeColors="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_dob"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:checked="true"
+                        android:enabled="true"
+                        android:text="@string/text_date_of_birth" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/rb_age"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="true"
+                        android:text="@string/text_age" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/date_of_birth_Container"
+                    style="@style/Theme.Roshnee.EditText.Registration"
+                    android:hint="@string/text_date_of_birth"
+                    android:visibility="@{myViewModel.showDob?View.VISIBLE:View.GONE}"
+                    app:counterEnabled="false"
+                    app:endIconDrawable="@drawable/ic_calendar"
+                    app:endIconMode="custom"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/chip_group_dob">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:longClickable="false"
+                        app:datePick="@{myViewModel.selectedDob}"
+                        app:maxDate="@{myViewModel.maximumDob}"
+                        app:textDate="@{myViewModel.selectedDob}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/age_Container"
+                    style="@style/Theme.Roshnee.EditText.Registration"
+                    android:hint="@string/text_age"
+                    android:visibility="@{myViewModel.showDob?View.GONE:View.VISIBLE}"
+                    app:counterEnabled="false"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/chip_group_dob"
+                    app:suffixText="@string/years">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/Registration.TextInputLayout"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:text="@={myViewModel.age}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="date_of_birth_Container,age_Container" />
+
+                <TextView
+                    android:id="@+id/label_Sex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_big"
+                    android:text="@string/text_sex"
+                    android:textAppearance="?textAppearanceCaption"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_age" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:onCheckedChanged="@{(group, checkedId)->myViewModel.setSex(checkedId)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_Sex"
+                    app:singleSelection="true"
+                    app:useMaterialThemeColors="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_male"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="true"
+                        android:text="@string/text_male" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_female"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="true"
+                        android:text="@string/text_female" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/label_Diabetes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_big"
+                    android:text="@string/text_diabetes"
+                    android:textAppearance="?textAppearanceCaption"
+                    app:layout_constraintTop_toBottomOf="@id/chip_group_sex" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_diabetes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:onCheckedChanged="@{(group, checkedId)->myViewModel.setDiabetes(checkedId)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_Diabetes"
+                    app:singleSelection="true"
+                    app:useMaterialThemeColors="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_diabetes_yes"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="true"
+                        android:text="@string/text_yes" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_diabetes_no"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="true"
+                        android:text="@string/text_no" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/label_Tobacco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_big"
+                    android:text="Tobacco*"
+                    android:textAppearance="?textAppearanceCaption"
+                    app:layout_constraintTop_toBottomOf="@id/chip_group_diabetes" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_tobacco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:onCheckedChanged="@{(group, checkedId)->myViewModel.setTobacco(checkedId)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_Tobacco"
+                    app:singleSelection="true"
+                    app:useMaterialThemeColors="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tobacco_yes"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="true"
+                        android:text="@string/text_yes" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tobacco_no"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="true"
+                        android:text="@string/text_no" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/label_cardiovascularEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_big"
+                    android:text="@string/text_previous_major_cardiovascular_event"
+                    android:textAppearance="?textAppearanceCaption"
+                    app:layout_constraintTop_toBottomOf="@id/chip_group_tobacco" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_cardiovascularEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:onCheckedChanged="@{(group, checkedId)->myViewModel.setCardiovascularEvent(checkedId)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_cardiovascularEvent"
+                    app:singleSelection="true"
+                    app:useMaterialThemeColors="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_cardiovascularEvent_yes"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="true"
+                        android:text="@string/text_yes" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_cardiovascularEvent_no"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="true"
+                        android:text="@string/text_no" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/label_bp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_big"
+                    android:text="@string/text_blood_pressure"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/chip_group_cardiovascularEvent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_sys"
+                    style="@style/Theme.Roshnee.EditText.Registration"
+                    android:layout_width="@dimen/zero_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/spacing_micro"
+                    android:layout_marginEnd="@dimen/margin_mini"
+                    app:counterEnabled="false"
+                    app:errorEnabled="@{myViewModel.sysError!=null}"
+                    app:errorText="@{myViewModel.sysError}"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toStartOf="@id/label_bp_help"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_bp"
+                    app:layout_constraintWidth_percent=".25">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_sys"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="systolic"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:singleLine="true"
+                        android:text="@={myViewModel.sys}"
+                        app:digit_before_decimal="@{3}"
+                        app:max_value="@{600.0}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/label_bp_help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/zero_dp"
+                    android:layout_marginStart="@dimen/margin_mini"
+                    android:layout_marginEnd="@dimen/margin_mini"
+                    android:gravity="center"
+                    android:text="/"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    app:layout_constraintBottom_toBottomOf="@id/til_sys"
+                    app:layout_constraintEnd_toStartOf="@+id/til_dia"
+                    app:layout_constraintStart_toEndOf="@+id/til_sys"
+                    app:layout_constraintTop_toTopOf="@id/til_sys" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_dia"
+                    style="@style/Theme.Roshnee.EditText"
+                    android:layout_width="@dimen/zero_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_mini"
+                    android:layout_marginTop="@dimen/spacing_micro"
+                    android:layout_marginEnd="@dimen/margin_mini"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toStartOf="@id/label_bp_unit"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/label_bp_help"
+                    app:layout_constraintTop_toBottomOf="@id/label_bp"
+                    app:layout_constraintWidth_percent=".25">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiet_dia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="diastolic"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:singleLine="true"
+                        android:text="@={myViewModel.dia}"
+                        app:digit_before_decimal="@{3}"
+                        app:max_value="@{600.0}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/label_bp_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/zero_dp"
+                    android:layout_marginStart="@dimen/margin_mini"
+                    android:layout_marginEnd="@dimen/spacing_micro"
+                    android:gravity="center"
+                    android:text="mmhg"
+                    android:textAppearance="?textAppearanceBody2"
+                    app:layout_constraintBottom_toBottomOf="@id/barrier_bp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/til_dia"
+                    app:layout_constraintTop_toTopOf="@id/til_sys"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_bp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="til_dia,til_sys" />
+
+                <TextView
+                    android:id="@+id/label_Height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_big"
+                    android:text="Height"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_bp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/height_container_in_ft"
+                    style="@style/Theme.Roshnee.EditText"
+                    android:layout_width="@dimen/zero_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/spacing_micro"
+                    app:hintEnabled="false"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_Height"
+                    app:layout_constraintWidth_percent=".25">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/heightFt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="ft"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:singleLine="true"
+                        android:text="@={myViewModel.inputFeet}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/height_container"
+                    style="@style/Theme.Roshnee.EditText"
+                    android:layout_width="@dimen/zero_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    app:hintEnabled="false"
+                    app:layout_constraintStart_toEndOf="@+id/height_container_in_ft"
+                    app:layout_constraintTop_toTopOf="@+id/height_container_in_ft"
+                    app:layout_constraintWidth_percent=".25">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/heightIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="in"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:singleLine="true"
+                        android:text="@={myViewModel.inputInch}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/heightPostfix_container"
+                    style="@style/Registration.DropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    app:counterEnabled="false"
+                    android:gravity="center_horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/height_container"
+                    app:layout_constraintStart_toEndOf="@+id/height_container"
+                    app:layout_constraintTop_toTopOf="@+id/height_container_in_ft">
+
+                    <com.example.heartcarelite.utils.MyAutoCompleteSpinner
+                        android:id="@+id/height_prefix"
+                        entries="@{@stringArray/height}"
+                        value="@={myViewModel.inputHeightPostfix}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:editable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/label_Weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_big"
+                    android:text="Weight"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/height_container_in_ft" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/weight_container"
+                    style="@style/Theme.Roshnee.EditText"
+                    android:layout_width="@dimen/zero_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/spacing_micro"
+                    app:hintEnabled="false"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_Weight"
+                    app:layout_constraintWidth_percent=".25">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/weight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="kg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:singleLine="true"
+                        android:text="@={myViewModel.inputUserWeight}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/weight_prefix_container"
+                    style="@style/Registration.DropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:gravity="center_horizontal"
+                    app:counterEnabled="false"
+                    app:layout_constraintBottom_toBottomOf="@+id/weight_container"
+                    app:layout_constraintStart_toEndOf="@+id/weight_container"
+                    app:layout_constraintTop_toTopOf="@+id/weight_container">
+
+                    <com.example.heartcarelite.utils.MyAutoCompleteSpinner
+                        android:id="@+id/weight_prefix"
+                        entries="@{@stringArray/weight}"
+                        value="@={myViewModel.inputUserWeightPostfix}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:editable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/label_BMI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/margin_mini"
+                    android:text="BMI "
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/weight_prefix_container"
+                    app:layout_constraintStart_toEndOf="@+id/weight_prefix_container"
+                    app:layout_constraintTop_toTopOf="@+id/weight_prefix_container" />
+
+                <TextView
+                    android:id="@+id/label_BMI_postfix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/margin_mini"
+                    android:text="@={myViewModel.inputUserBMI}"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_BMI"
+                    app:layout_constraintStart_toEndOf="@+id/label_BMI"
+                    app:layout_constraintTop_toTopOf="@+id/label_BMI" />
+
+                <TextView
+                    android:id="@+id/label_cholesterol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_big"
+                    android:text="Total Cholesterol*"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/weight_container" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/cholesterol_container"
+                    style="@style/Theme.Roshnee.EditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/spacing_micro"
+                    app:hintEnabled="false"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_cholesterol"
+                    app:layout_constraintWidth_percent=".25">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cholesterol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Cholesterol"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:singleLine="true"
+                        android:text="@={myViewModel.inputTotalCholesterol}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/cholesterol_prefix"
+                    style="@style/Registration.DropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    app:counterEnabled="false"
+                    android:gravity="center_horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/cholesterol_container"
+                    app:layout_constraintStart_toEndOf="@+id/cholesterol_container"
+                    app:layout_constraintTop_toTopOf="@+id/cholesterol_container">
+
+                    <com.example.heartcarelite.utils.MyAutoCompleteSpinner
+                        android:id="@+id/cholesterol_postfix"
+                        entries="@{@stringArray/cholesterol}"
+                        value="@={myViewModel.inputUserCholesterolPostfix}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:editable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_mini"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginEnd="@dimen/margin_big"
+                    android:layout_marginBottom="@dimen/margin_mini"
+                    android:background="#808080"
+                    app:layout_constraintTop_toBottomOf="@+id/cholesterol_container"
+                    tools:layout_editor_absoluteX="16dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#d9d9d9"
+                        android:padding="@dimen/margin_big">
+
+
+                        <TextView
+                            android:id="@+id/textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rounded_textview"
+                            android:gravity="center"
+                            android:text="28%"
+                            android:textColor="@color/white"
+                            android:textSize="24sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/title_warning_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_mini"
+                            android:text="10-year risk of heart attack or stroke"
+                            android:textAppearance="?textAppearanceCaption"
+                            app:layout_constraintStart_toEndOf="@+id/textview"
+                            app:layout_constraintTop_toTopOf="@+id/textview" />
+
+                        <TextView
+                            android:id="@+id/title_risk_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_mini"
+                            android:layout_marginStart="@dimen/margin_mini"
+                            android:text="Very High Risk"
+                            android:textAppearance="?textAppearanceBody2"
+                            app:layout_constraintStart_toEndOf="@+id/textview"
+                            app:layout_constraintTop_toBottomOf="@+id/title_warning_text" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/button_container"
+            android:padding="@dimen/margin_normal"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/b_predict"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_big"
+                android:layout_marginStart="@dimen/margin_big"
+                android:text="PREDICT RISK"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <Button
+                android:id="@+id/b_next_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_big"
+                android:layout_marginEnd="@dimen/margin_big"
+                android:text="Next"
+                android:backgroundTint="@color/orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
