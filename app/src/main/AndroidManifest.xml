@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HeartCareLite">
         <activity
+            android:name=".ui.CvdRiskChart.CvdRiskChartActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.userDetails.UserDetailsActivity"
             android:exported="true" />
         <activity

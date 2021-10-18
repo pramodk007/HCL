@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import com.example.heartcarelite.R
 import com.example.heartcarelite.databinding.ActivityLandingBinding
 import com.example.heartcarelite.databinding.ActivityMainBinding
+import com.example.heartcarelite.ui.CvdRiskChart.CvdRiskChartActivity
 import com.example.heartcarelite.ui.cvdRisk.CvdRiskActivity
 import com.example.heartcarelite.ui.userList.UserListActivity
 
@@ -29,6 +30,10 @@ class LandingActivity : AppCompatActivity() {
         }
         binding.cardView2.setOnClickListener {
             val i = Intent(this@LandingActivity, UserListActivity::class.java)
+            startActivity(i)
+        }
+        binding.cardView1.setOnClickListener {
+            val i = Intent(this@LandingActivity, CvdRiskChartActivity::class.java)
             startActivity(i)
         }
 

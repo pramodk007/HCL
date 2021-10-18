@@ -37,7 +37,7 @@ class MyViewHolder(private val binding: ListItemBinding): RecyclerView.ViewHolde
     fun bind(user: User, clickListener:(User)->Unit){
         binding.tvLastName.text = user.userLastName
         binding.tvFirstName.text = user.userFirstName
-        binding.tvScore.text = user.Id.toString()//need to change
+        binding.tvScore.text = user.cvdScore
         binding.tvAge.text = user.userAge
         binding.tvSex.text = user.userSex
         binding.tvPatientId.text = user.userPatientId

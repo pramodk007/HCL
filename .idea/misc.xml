@@ -3,6 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/drawable/bg_deep_red_rounded.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/drawable/bg_green_rounded.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/drawable/bg_grey_rounded.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/drawable/bg_orange_rounded.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/drawable/bg_red_rounded.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/drawable/bg_yellow_rounded.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/drawable/circle.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/drawable/information_outline_blue.xml" value="0.387037037037037" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/layout/activity_cvd_risk.xml" value="0.25" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/layout/activity_cvd_risk_chart.xml" value="0.21712222795255287" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/layout/activity_landing.xml" value="0.3875" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/layout/activity_save_record.xml" value="0.3875" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/layout/activity_user_details.xml" value="0.215625" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/layout/activity_user_list.xml" value="0.3875" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/layout/card.xml" value="0.3875" />
+        <entry key="..\:/Users/thede/AndroidStudioProjects/HCL-v1/app/src/main/res/layout/list_item.xml" value="0.215625" />
         <entry key="..\:/Users/thede/AndroidStudioProjects/HeartCareLite/app/src/main/res/drawable/bg_green_rounded.xml" value="0.3592592592592593" />
         <entry key="..\:/Users/thede/AndroidStudioProjects/HeartCareLite/app/src/main/res/drawable/bg_grey_rounded.xml" value="0.3592592592592593" />
         <entry key="..\:/Users/thede/AndroidStudioProjects/HeartCareLite/app/src/main/res/drawable/bg_red_rounded.xml" value="0.3592592592592593" />

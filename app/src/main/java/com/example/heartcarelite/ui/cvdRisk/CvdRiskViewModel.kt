@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.heartcarelite.R
+import com.example.heartcarelite.model.CVDRiskChart
 import com.example.heartcarelite.model.UserInfo
 import com.example.heartcarelite.repository.cvdRiskRepo.CvdRiskRepository
 import com.example.heartcarelite.utils.Event
@@ -51,15 +52,19 @@ class CvdRiskViewModel @Inject constructor(private val cvdRiskRepository: CvdRis
 
     @Bindable
     val inputUserSex = MutableLiveData<String>()
+    val inputUserSexInt = MutableLiveData<Int>()
 
     @Bindable
     val inputUserDiabetes = MutableLiveData<String>()
+    val inputUserDiabetesInt = MutableLiveData<Int>()
 
     @Bindable
     val inputUserTobaccoUser = MutableLiveData<String>()
+    val inputUserTobaccoUserInt = MutableLiveData<Int>()
 
     @Bindable
     val inputCardiovascularEvent = MutableLiveData<String>()
+    val inputCardiovascularEventInt = MutableLiveData<Int>()
 
     @Bindable
     val inputUserBloodPressure = MutableLiveData<String>()
@@ -69,6 +74,9 @@ class CvdRiskViewModel @Inject constructor(private val cvdRiskRepository: CvdRis
 
     @Bindable
     val inputInch = ObservableField("")
+
+    @Bindable
+    val inputCm = ObservableField("")
 
     @Bindable
     val inputHeightPostfix = ObservableField("ft/in")
@@ -88,6 +96,9 @@ class CvdRiskViewModel @Inject constructor(private val cvdRiskRepository: CvdRis
 
     @Bindable
     val inputUserCholesterolPostfix = MutableLiveData<String>("mg/dL")
+
+    @Bindable
+    val inputRiskMessage = MutableLiveData<String?>()
 
     @Bindable
     val inputCvdScore = MutableLiveData<String?>()
@@ -143,9 +154,11 @@ class CvdRiskViewModel @Inject constructor(private val cvdRiskRepository: CvdRis
         when (id) {
             R.id.chip_male -> {
                 inputUserSex.value = "M"
+                inputUserSexInt.value = 1
             }
             R.id.chip_female -> {
                 inputUserSex.value = "F"
+                inputUserSexInt.value = 0
             }
 
         }
@@ -155,9 +168,11 @@ class CvdRiskViewModel @Inject constructor(private val cvdRiskRepository: CvdRis
         when (id) {
             R.id.chip_diabetes_yes -> {
                 inputUserDiabetes.value = "diabetes yes"
+                inputUserDiabetesInt.value = 1
             }
             R.id.chip_diabetes_no -> {
                 inputUserDiabetes.value = "diabetes no"
+                inputUserDiabetesInt.value = 0
             }
         }
     }
@@ -166,9 +181,11 @@ class CvdRiskViewModel @Inject constructor(private val cvdRiskRepository: CvdRis
         when (id) {
             R.id.chip_tobacco_yes -> {
                 inputUserTobaccoUser.value = "Tobacco User"
+                inputUserTobaccoUserInt.value = 1
             }
             R.id.chip_tobacco_no -> {
                 inputUserTobaccoUser.value = "not a Tobacco User"
+                inputUserTobaccoUserInt.value = 0
             }
 
         }
@@ -178,12 +195,40 @@ class CvdRiskViewModel @Inject constructor(private val cvdRiskRepository: CvdRis
         when (id) {
             R.id.chip_cardiovascularEvent_yes -> {
                 inputCardiovascularEvent.value = "with a history of Cardiovascular Event"
+                inputCardiovascularEventInt.value = 1
             }
             R.id.chip_cardiovascularEvent_no -> {
                 inputCardiovascularEvent.value = "no history of Cardiovascular Event"
+                inputCardiovascularEventInt.value = 0
             }
 
         }
+    }
+
+    fun computeRisk(
+        regionCode:String,
+        isDiabetes:String,
+        gender:String,
+        isSmoker:String,
+        age:String,
+        systolic:String,
+        cholesterol:String,
+        cholesterolUnit:String,
+        BMI:String,
+        BMIUnit:String,
+    ) :List<CVDRiskChart>{
+         return cvdRiskRepository.getCvdDataDetails(
+            regionCode,
+            isDiabetes,
+            gender,
+            isSmoker,
+            age,
+            systolic,
+            cholesterol,
+            cholesterolUnit,
+            BMI,
+            BMIUnit,
+        )
     }
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {

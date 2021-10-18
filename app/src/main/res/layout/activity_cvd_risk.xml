@@ -135,6 +135,7 @@
                     app:suffixText="@string/years">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_age"
                         style="@style/Registration.TextInputLayout"
                         android:imeOptions="actionNext"
                         android:inputType="number"
@@ -278,6 +279,7 @@
                     android:layout_marginEnd="@dimen/margin_big"
                     android:text="@string/text_previous_major_cardiovascular_event"
                     android:textAppearance="?textAppearanceCaption"
+                    android:drawableEnd="@drawable/information_outline_blue"
                     app:layout_constraintTop_toBottomOf="@id/chip_group_tobacco" />
 
                 <com.google.android.material.chip.ChipGroup
@@ -484,11 +486,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_normal"
-                    app:counterEnabled="false"
                     android:gravity="center_horizontal"
-                    app:layout_constraintBottom_toBottomOf="@+id/height_container"
-                    app:layout_constraintStart_toEndOf="@+id/height_container"
-                    app:layout_constraintTop_toTopOf="@+id/height_container_in_ft">
+                    app:counterEnabled="false"
+                    app:layout_constraintBottom_toBottomOf="@+id/barrier"
+                    app:layout_constraintStart_toEndOf="@+id/guideline_end"
+                    >
 
                     <com.example.heartcarelite.utils.MyAutoCompleteSpinner
                         android:id="@+id/height_prefix"
@@ -499,6 +501,38 @@
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/height_container_in_cm"
+                    style="@style/Theme.Roshnee.EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_micro"
+                    android:layout_marginBottom="3dp"
+                    app:hintEnabled="false"
+                    app:layout_constraintBottom_toBottomOf="@+id/barrier"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                    app:layout_constraintStart_toStartOf="@id/label_Height"
+                    app:layout_constraintTop_toBottomOf="@id/label_Height"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/heightCm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="cm"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:longClickable="false"
+                        android:singleLine="true"
+                        android:text="@={myViewModel.inputCm}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="height_container_in_ft,height_container_in_cm" />
+
                 <TextView
                     android:id="@+id/label_Weight"
                     android:layout_width="wrap_content"
@@ -508,7 +542,7 @@
                     android:layout_marginEnd="@dimen/margin_big"
                     android:text="Weight"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/height_container_in_ft" />
+                    app:layout_constraintTop_toBottomOf="@id/barrier" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/weight_container"
@@ -607,7 +641,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Cholesterol"
                         android:imeOptions="actionDone"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:longClickable="false"
                         android:singleLine="true"
                         android:text="@={myViewModel.inputTotalCholesterol}" />
@@ -647,6 +681,8 @@
                     tools:layout_editor_absoluteX="16dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/riskCardView"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#d9d9d9"
@@ -659,7 +695,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/rounded_textview"
                             android:gravity="center"
-                            android:text="28%"
+                            android:text="No result found"
                             android:textColor="@color/white"
                             android:textSize="24sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -671,7 +707,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_mini"
-                            android:text="10-year risk of heart attack or stroke"
+                            android:text=""
                             android:textAppearance="?textAppearanceCaption"
                             app:layout_constraintStart_toEndOf="@+id/textview"
                             app:layout_constraintTop_toTopOf="@+id/textview" />
@@ -682,13 +718,29 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_mini"
                             android:layout_marginStart="@dimen/margin_mini"
-                            android:text="Very High Risk"
+                            android:text="@={myViewModel.inputRiskMessage}"
                             android:textAppearance="?textAppearanceBody2"
                             app:layout_constraintStart_toEndOf="@+id/textview"
                             app:layout_constraintTop_toBottomOf="@+id/title_warning_text" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="20dp"
+                    app:layout_constraintGuide_percent=".08" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="20dp"
+                    app:layout_constraintGuide_percent=".62" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.heartcarelite.di
 
+import com.example.heartcarelite.data.local.CVDRiskDataDAO
 import com.example.heartcarelite.data.local.UserDAO
 import com.example.heartcarelite.repository.cvdRiskRepo.CvdRiskRepository
 import com.example.heartcarelite.repository.cvdRiskRepo.CvdRiskRepositoryImp
@@ -17,8 +18,8 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providePatientRepository(userDao: UserDAO): CvdRiskRepository {
-        return CvdRiskRepositoryImp(userDao)
+    fun providePatientRepository(userDao: UserDAO,cvdRiskDataDAO: CVDRiskDataDAO): CvdRiskRepository {
+        return CvdRiskRepositoryImp(userDao,cvdRiskDataDAO)
     }
 
     @Provides

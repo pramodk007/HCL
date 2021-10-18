@@ -44,12 +44,11 @@ class UserDetailsActivity : AppCompatActivity() {
 
         creteMaterialDialog()
 
-
         requireNotNull(intent).run {
             lss = getParcelableExtra("userDetails")!!
         }
         lss.let {
-            supportActionBar?.title = "${lss.userFirstName} ${lss.userMiddleName?.trim()} ${lss.userLastName}"
+            supportActionBar?.title = "${lss.userFirstName} ${if(lss.userMiddleName != null) lss.userMiddleName?.trim() else ""} ${lss.userLastName}"
             binding.tvPatientId.text = lss.userPatientId
             binding.tvScreeningDate.text = Date(lss.screeningDate.toLong()).toSimpleString()
             binding.tvSex.text = lss.userSex
@@ -66,6 +65,28 @@ class UserDetailsActivity : AppCompatActivity() {
             binding.tvAddressLineTwo.text = lss.userPinCode
             binding.tvAddressLineThree.text = lss.userCountry
             binding.tvMobileNumber.text = lss.userMobileNumber
+            binding.textview.text = lss.cvdScore + "%"
+        }
+        if(lss.cvdScore.toInt() < 5){
+            binding.titleRiskText.text = "Low Risk"
+            binding.textview.setBackgroundResource(R.drawable.bg_green_rounded)
+            binding.titleWarningText.text = "Low risk of heart attack or stroke"
+        }else if(lss.cvdScore.toInt() in 5..9){
+            binding.titleRiskText.text = "Moderate risk"
+            binding.textview.setBackgroundResource(R.drawable.bg_yellow_rounded)
+            binding.titleWarningText.text = "Moderate risk of heart attack or stroke"
+        }else if(lss.cvdScore.toInt() in 10..19){
+            binding.titleRiskText.text = " High risk"
+            binding.textview.setBackgroundResource(R.drawable.bg_red_rounded)
+            binding.titleWarningText.text = "High risk of heart attack or stroke"
+        }else if(lss.cvdScore.toInt() in 20..29){
+            binding.titleRiskText.text = "Very high risk"
+            binding.textview.setBackgroundResource(R.drawable.bg_red_rounded)
+            binding.titleWarningText.text = "10-year risk of heart attack or stroke"
+        }else if(lss.cvdScore.toInt() > 30){
+            binding.titleRiskText.text = " Extremely high risk"
+            binding.textview.setBackgroundResource(R.drawable.bg_deep_red_rounded)
+            binding.titleWarningText.text = "10-year risk of heart attack or stroke"
         }
 
         binding.bUpdate.setOnClickListener {
